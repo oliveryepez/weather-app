@@ -7,7 +7,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="@color/black">
-
     <TextView
         android:id="@+id/txt_city"
         android:layout_width="wrap_content"
@@ -16,7 +15,6 @@
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
         style="@style/city_text"/>
-
     <TextView
         android:id="@+id/txt_time"
         android:layout_width="wrap_content"
@@ -25,7 +23,6 @@
         android:layout_alignBaseline="@+id/txt_city"
         android:paddingRight="10dp"
         style="@style/time_text"/>
-
     <TextView
         android:id="@+id/txt_temperature"
         android:layout_width="wrap_content"
@@ -34,13 +31,45 @@
         android:paddingLeft="15dp"
         android:layout_below="@+id/txt_city"
         style="@style/temperature_style"/>
-
     <TextView
         android:id="@+id/txt_icon_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/weather_icon"
+        android:layout_alignTop="@+id/txt_temperature"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/txt_maxTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/txt_max_temp"
         android:layout_below="@+id/txt_temperature"
-        android:layout_centerHorizontal="true"
-        style="@style/weather_icon" />
-
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="56dp"/>
+    <TextView
+        android:id="@+id/txt_minTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/txt_min_temp"
+        android:layout_below="@+id/txt_icon_weather"
+        android:layout_toRightOf="@+id/txt_maxTemp"
+        android:layout_toEndOf="@+id/txt_maxTemp"
+        android:layout_alignBaseline="@+id/txt_maxTemp"/>
+    <TextView
+        android:id="@+id/txt_weather_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_icon_weather"
+        android:layout_alignParentRight="true"
+        android:ellipsize="none"
+        android:maxLines="100"
+        android:scrollHorizontally="false"
+        style="@style/weather_desc"/>
+    <View
+        android:layout_width="300dp"
+        android:layout_height="3dp"
+        android:background="@android:color/white"
+        android:layout_below="@+id/txt_maxTemp"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

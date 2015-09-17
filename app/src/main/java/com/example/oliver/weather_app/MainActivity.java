@@ -40,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
         String tag_json_obj = "json_obj_req";
         String url = "http://api.openweathermap.org/data/2.5/weather?q=San%20Jose,crc";
 
-       final TextView weather_icon = (TextView) findViewById(R.id.txt_icon_weather);
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/weathericons.ttf");
-        weather_icon.setTypeface(font);
-
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET,
                 url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -53,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
                     setCity(response);
                     setTemperature(response);
                     setTime(response);
-                    setWeatherIcon(response, weather_icon);
-
+                    setWeatherIcon(response);
+                    setMaxMinTemperature(response);
+                    setWeatherDesc(response);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -122,15 +119,22 @@ public class MainActivity extends AppCompatActivity {
         txt_city.setText(name);
     }
 
-    private void setTemperature(JSONObject response) throws JSONException {
-        JSONObject mainObject = response.getJSONObject("main");
-        Double celsius_tempeture = 0.0;
+    private String convertToCelsius(Double kelvin_temperature){
         String textview_text = null;
-        Double kelvin_temperature = mainObject.getDouble("temp");
+        Double celsius_tempeture = 0.0;
 
         celsius_tempeture = kelvin_temperature - this.KELVIN_CONST;
         textview_text = Double.toString(celsius_tempeture);
         textview_text = String.format("%.0f", celsius_tempeture);
+
+        return textview_text;
+    }
+
+    private void setTemperature(JSONObject response) throws JSONException {
+        JSONObject mainObject = response.getJSONObject("main");
+        Double kelvin_temperature = mainObject.getDouble("temp");
+
+        String textview_text = convertToCelsius(kelvin_temperature);
 
         TextView txt_temperature = (TextView) findViewById(R.id.txt_temperature);
         setTextViewFont(txt_temperature, "light");
@@ -151,9 +155,13 @@ public class MainActivity extends AppCompatActivity {
         txt_time.setText(time);
     }
 
-    private void setWeatherIcon(JSONObject response, TextView txt_weather_icon) throws JSONException {
+    private void setWeatherIcon(JSONObject response) throws JSONException {
         JSONArray weatther_array = response.getJSONArray("weather");
         int weather_id = weatther_array.getJSONObject(0).getInt("id");
+
+        TextView weather_icon = (TextView) findViewById(R.id.txt_icon_weather);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/weathericons.ttf");
+        weather_icon.setTypeface(font);
 
         String icon = "";
 
@@ -209,9 +217,45 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try{
-            txt_weather_icon.setText(icon);
+            weather_icon.setText(icon);
 
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void setMaxMinTemperature(JSONObject response){
+        try {
+            JSONObject mainObject = response.getJSONObject("main");
+
+            Double dMaxTemp = mainObject.getDouble("temp_max");
+            Double dMinTemp = mainObject.getDouble("temp_min");
+
+            TextView maxTemp = (TextView) findViewById(R.id.txt_maxTemp);
+            TextView minTemp = (TextView) findViewById(R.id.txt_minTemp);
+
+            String sMaxTemp = convertToCelsius(dMaxTemp);
+            String sMinTemp = convertToCelsius(dMinTemp);
+
+            setTextViewFont(maxTemp, "light");
+            setTextViewFont(minTemp, "light");
+
+            maxTemp.setText(sMaxTemp + (char) 0x00B0);
+            minTemp.setText("/ " + sMinTemp + (char) 0x00B0);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setWeatherDesc(JSONObject response){
+        try {
+            JSONArray wearher_array = response.getJSONArray("weather");
+            String weather_desc = wearher_array.getJSONObject(0).getString("description");
+            TextView txt_description = (TextView)findViewById(R.id.txt_weather_desc);
+            setTextViewFont(txt_description, "light");
+            txt_description.setText(weather_desc);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
