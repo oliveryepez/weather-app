@@ -5,46 +5,73 @@
         <!-- Customize your theme here. -->
     </style>
     
+    <style name="HideTitleBar" parent="">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
     <style name="temperature_style" parent="TextAppearance.AppCompat.Large">
-        <item name="android:textColor">#ABB7B7</item>
+        <item name="android:textColor">#FFFFFF</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">32pt</item>
+        <item name="android:textSize">50pt</item>
     </style>
 
     <style name="city_text" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">30dp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="time_text" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">#ABB7B7</item>
+        <item name="android:textColor">#FFFFFF</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="weather_icon" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">65pt</item>
+        <item name="android:textSize">20sp</item>
     </style>
-    <style name="txt_max_temp" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">#ABB7B7</item>
+    <style name="small_text" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">#FFFFFF</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">32pt</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
-    <style name="txt_min_temp" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">#ABB7B7</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">28dp</item>
-    </style>
 
     <style name="weather_desc" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">#ABB7B7</item>
+        <item name="android:textColor">#FFFFFF</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">24dp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
+
+    <style name="messure_icon" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    
+    <style name="tableForecast">
+        <item name="android:background">@color/tableForecastBackground</item>
+    </style>
+
+    <style name="tblForecastTitle">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">20sp</item>
+    </style>
+
+    <style name="loading_text">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="spinner">
+        <item name="android:color">#FFFFFF</item>
+    </style>
+
 </resources>
